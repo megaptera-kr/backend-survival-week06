@@ -46,6 +46,13 @@ public class JdbcPostDao implements PostDao {
         return jdbcTemplate.query(query, postRowMapper());
     }
 
+    private RowMapper<Post> postRowMapper() {
+        return (rs, rowNum) ->
+                new Post(rs.getString("id"), rs.getString("title"),
+                        rs.getString("author"), rs.getString("content"));
+
+    }
+
     @Override
     public Post findById(String id) {
         String query = """
@@ -79,13 +86,6 @@ public class JdbcPostDao implements PostDao {
         if (this.id > 0) {
             this.id--;
         }
-    }
-
-    private RowMapper<Post> postRowMapper() {
-        return (rs, rowNum) ->
-                new Post(rs.getString("id"), rs.getString("title"),
-                        rs.getString("author"), rs.getString("content"));
-
     }
 
     @Override

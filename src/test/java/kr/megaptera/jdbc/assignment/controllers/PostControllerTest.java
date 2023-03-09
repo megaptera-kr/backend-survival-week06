@@ -2,6 +2,7 @@ package kr.megaptera.jdbc.assignment.controllers;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -129,7 +130,7 @@ public class PostControllerTest {
                         .content(json))
                 .andExpect(status().isNoContent());
 
-        verify(updatePostService).updatePost(any(String.class), any(UpdatePostRequest.class));
+        verify(updatePostService).updatePost(eq(id), any(UpdatePostRequest.class));
 
     }
 
