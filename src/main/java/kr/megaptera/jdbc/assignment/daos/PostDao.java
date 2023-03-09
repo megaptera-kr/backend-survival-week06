@@ -5,7 +5,7 @@ import kr.megaptera.jdbc.assignment.models.Post;
 
 public interface PostDao {
 
-    public void save(Post post);
+    public Post save(Post post);
 
     public List<Post> findAll();
 
@@ -15,5 +15,5 @@ public interface PostDao {
 
     public void delete(String id);
 
-    public void clean();
+    public void clear();
 }

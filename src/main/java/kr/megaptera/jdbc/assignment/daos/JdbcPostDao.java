@@ -18,7 +18,7 @@ public class JdbcPostDao implements PostDao {
     }
 
     @Override
-    public void save(Post post) {
+    public Post save(Post post) {
         if (post.getId() == null) {
             generateId();
             post.generateId(id);
@@ -30,6 +30,8 @@ public class JdbcPostDao implements PostDao {
                 """;
         jdbcTemplate.update(query, post.getId(), post.getTitle(), post.getAuthor(),
                 post.getContent());
+
+        return post;
     }
 
     private void generateId() {
@@ -87,7 +89,7 @@ public class JdbcPostDao implements PostDao {
     }
 
     @Override
-    public void clean() {
+    public void clear() {
         String query = """
                 DELETE FROM posts;
                 """;
