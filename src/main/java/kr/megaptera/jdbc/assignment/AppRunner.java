@@ -26,7 +26,8 @@ public class AppRunner implements CommandLineRunner {
                     id VARCHAR(30) PRIMARY KEY,
                     post_id VARCHAR(30),
                     author VARCHAR(30),
-                    content VARCHAR(200)
+                    content VARCHAR(200),
+                    CONSTRAINT fk_post_id FOREIGN KEY (post_id) REFERENCES "posts"(id) ON DELETE CASCADE
                 );
                 """;
         jdbcTemplate.execute(sql);
