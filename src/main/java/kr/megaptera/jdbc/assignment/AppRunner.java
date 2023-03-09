@@ -16,18 +16,20 @@ public class AppRunner implements CommandLineRunner {
     public void run(String... args) {
         String sql = """
                 CREATE TABLE IF NOT EXISTS posts (
-                    id VARCHAR(30) PRIMARY KEY,
+                    id VARCHAR(30),
                     title VARCHAR(50),
                     author VARCHAR(30),
-                    content VARCHAR(200)
+                    content VARCHAR(200),
+                    PRIMARY KEY (id)
                 );
                 
                 CREATE TABLE IF NOT EXISTS comments (
-                    id VARCHAR(30) PRIMARY KEY,
+                    id VARCHAR(30),
                     post_id VARCHAR(30),
                     author VARCHAR(30),
                     content VARCHAR(200),
-                    CONSTRAINT fk_post_id FOREIGN KEY (post_id) REFERENCES "posts"(id) ON DELETE CASCADE
+                    PRIMARY KEY (id),
+                    FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
                 );
                 """;
         jdbcTemplate.execute(sql);
