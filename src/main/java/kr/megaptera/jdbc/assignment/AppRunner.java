@@ -16,14 +16,14 @@ public class AppRunner implements CommandLineRunner {
     public void run(String... args) {
         String sql = """
                 CREATE TABLE IF NOT EXISTS posts (
-                    id VARCHAR(30),
+                    id VARCHAR(30) PRIMARY KEY,
                     title VARCHAR(50),
                     author VARCHAR(30),
                     content VARCHAR(200)
                 );
                 
                 CREATE TABLE IF NOT EXISTS comments (
-                    id VARCHAR(30),
+                    id VARCHAR(30) PRIMARY KEY,
                     post_id VARCHAR(30),
                     author VARCHAR(30),
                     content VARCHAR(200)
