@@ -1,17 +1,17 @@
 package kr.megaptera.jdbc.assignment.application;
 
+import kr.megaptera.jdbc.assignment.daos.PostDao;
 import kr.megaptera.jdbc.assignment.dtos.PostCreateRequestDto;
 import kr.megaptera.jdbc.assignment.dtos.PostResponseDto;
 import kr.megaptera.jdbc.assignment.entities.PostEntity;
-import kr.megaptera.jdbc.assignment.repositories.PostRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreatePostService {
-  private final PostRepository postRepository;
+  private final PostDao postDao;
 
-  public CreatePostService(PostRepository postRepository) {
-    this.postRepository = postRepository;
+  public CreatePostService(PostDao postDao) {
+    this.postDao = postDao;
   }
 
   public PostResponseDto createPost(PostCreateRequestDto postCreateDto) {
@@ -21,7 +21,7 @@ public class CreatePostService {
       postCreateDto.getContent()
     );
 
-    postRepository.save(post);
+    postDao.save(post);
 
     return PostResponseDto.of(post);
   }

@@ -1,7 +1,7 @@
 package kr.megaptera.jdbc.assignment.application;
 
 import kr.megaptera.jdbc.assignment.entities.PostEntity;
-import kr.megaptera.jdbc.assignment.repositories.PostRepository;
+import kr.megaptera.jdbc.assignment.daos.PostRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

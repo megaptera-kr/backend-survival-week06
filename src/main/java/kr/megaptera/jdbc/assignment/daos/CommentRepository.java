@@ -1,5 +1,6 @@
-package kr.megaptera.jdbc.assignment.repositories;
+package kr.megaptera.jdbc.assignment.daos;
 
+import kr.megaptera.jdbc.assignment.daos.CommentDao;
 import kr.megaptera.jdbc.assignment.entities.CommentEntity;
 import kr.megaptera.jdbc.assignment.exceptions.CommentNotFound;
 import org.springframework.stereotype.Repository;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class CommentRepository {
+public class CommentRepository implements CommentDao {
   Map<String, CommentEntity> comments;
 
   public CommentRepository() {

@@ -1,5 +1,6 @@
-package kr.megaptera.jdbc.assignment.repositories;
+package kr.megaptera.jdbc.assignment.daos;
 
+import kr.megaptera.jdbc.assignment.daos.PostDao;
 import kr.megaptera.jdbc.assignment.entities.PostEntity;
 import kr.megaptera.jdbc.assignment.exceptions.PostNotFound;
 import org.springframework.stereotype.Repository;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class PostRepository {
+public class PostRepository implements PostDao {
   Map<String, PostEntity> posts;
 
   public PostRepository() {

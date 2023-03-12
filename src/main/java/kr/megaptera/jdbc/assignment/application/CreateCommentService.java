@@ -1,17 +1,17 @@
 package kr.megaptera.jdbc.assignment.application;
 
+import kr.megaptera.jdbc.assignment.daos.CommentDao;
 import kr.megaptera.jdbc.assignment.dtos.CommentCreateRequestDto;
 import kr.megaptera.jdbc.assignment.dtos.CommentResponseDto;
 import kr.megaptera.jdbc.assignment.entities.CommentEntity;
-import kr.megaptera.jdbc.assignment.repositories.CommentRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateCommentService {
-  private final CommentRepository commentRepository;
+  private final CommentDao commentDao;
 
-  public CreateCommentService(CommentRepository commentRepository) {
-    this.commentRepository = commentRepository;
+  public CreateCommentService(CommentDao commentDao) {
+    this.commentDao = commentDao;
   }
 
   public CommentResponseDto createComment(String postId,
@@ -22,7 +22,7 @@ public class CreateCommentService {
       commentCreateDto.getContent()
     );
 
-    commentRepository.save(comment);
+    commentDao.save(comment);
 
     return CommentResponseDto.of(comment);
   }

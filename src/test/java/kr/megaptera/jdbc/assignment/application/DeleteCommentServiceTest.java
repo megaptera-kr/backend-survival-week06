@@ -1,7 +1,7 @@
 package kr.megaptera.jdbc.assignment.application;
 
 import kr.megaptera.jdbc.assignment.entities.CommentEntity;
-import kr.megaptera.jdbc.assignment.repositories.CommentRepository;
+import kr.megaptera.jdbc.assignment.daos.CommentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
