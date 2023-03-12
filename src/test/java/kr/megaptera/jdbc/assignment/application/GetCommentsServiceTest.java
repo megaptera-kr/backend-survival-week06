@@ -21,6 +21,8 @@ public class GetCommentsServiceTest {
 
     private GetCommentsService getCommentsService;
 
+
+
     @BeforeEach
     void setUp() {
         commentDao = mock(JdbcCommentDao.class);
@@ -29,7 +31,7 @@ public class GetCommentsServiceTest {
     }
 
     @Test
-    @DisplayName("댓글 목록 조회")
+    @DisplayName("댓글 목록 조회as")
     void list() {
         PostId postId = new PostId("test1");
 
