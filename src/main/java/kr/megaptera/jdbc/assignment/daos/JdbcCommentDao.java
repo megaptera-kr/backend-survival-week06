@@ -26,16 +26,12 @@ public class JdbcCommentDao implements CommentDao {
                 LEFT OUTER JOIN posts ON comments.postId = posts.id
                 WHERE posts.id = ?
             """;
-
         return jdbcTemplate.query(query, commentRowMapper(), postId.toString());
     }
 
     @Override
     public Comment find(CommentId id) {
-        String query = """
-                SELECT * FROM comments WHERE id = ?
-            """;
-
+        String query = "SELECT * FROM comments WHERE id = ?";
         return jdbcTemplate.queryForObject(query, commentRowMapper(), id.toString());
     }
 
@@ -47,9 +43,7 @@ public class JdbcCommentDao implements CommentDao {
         String content = comment.getContent();
 
         transactionTemplate.execute(status -> {
-            String sql = """
-                    INSERT INTO comments(id, postId, author, content) VALUES(?, ?, ?, ?)
-                    """;
+            String sql = "INSERT INTO comments(id, postId, author, content) VALUES(?, ?, ?, ?)";
             jdbcTemplate.update(sql, id, postId, author, content);
             return null;
         });
@@ -61,9 +55,7 @@ public class JdbcCommentDao implements CommentDao {
         String content = comment.getContent();
 
         transactionTemplate.execute(status -> {
-            String sql = """
-                    UPDATE comments SET content = ? WHERE id = ?
-                    """;
+            String sql = "UPDATE comments SET content = ? WHERE id = ?";
             jdbcTemplate.update(sql, content, id);
             return null;
         });
@@ -72,9 +64,7 @@ public class JdbcCommentDao implements CommentDao {
     @Override
     public void delete(CommentId id) {
         transactionTemplate.execute(status -> {
-            String sql = """
-                    DELETE FROM comments WHERE id = ?
-                    """;
+            String sql = "DELETE FROM comments WHERE id = ?";
             jdbcTemplate.update(sql, id.toString());
             return null;
         });
