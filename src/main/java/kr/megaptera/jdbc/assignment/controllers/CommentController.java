@@ -51,7 +51,7 @@ public class CommentController {
             @RequestParam String postId,
             @RequestBody CommentUpdateDto commentUpdateDto
     ) {
-        updateCommentService.update(id, postId, commentUpdateDto);
+        updateCommentService.updateComment(id, postId, commentUpdateDto);
     }
 
     @DeleteMapping("/{id}")

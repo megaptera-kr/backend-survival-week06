@@ -14,7 +14,10 @@ public class UpdateCommentService {
         this.jdbcCommentDao = jdbcCommentDao;
     }
 
-    public void update(String id, String postId, CommentUpdateDto commentUpdateDto) {
+    public void updateComment(String id,
+                              String postId,
+                              CommentUpdateDto commentUpdateDto) {
+
         Comment comment = jdbcCommentDao.find(id, postId);
 
         comment.update(commentUpdateDto);

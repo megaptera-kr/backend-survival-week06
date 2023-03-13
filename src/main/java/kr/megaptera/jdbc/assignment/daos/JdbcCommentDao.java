@@ -51,7 +51,7 @@ public class JdbcCommentDao implements CommentDao {
                     if (!rs.next()) {
                         throw new CommentNotFound();
                     }
-                    
+
                     Comment comment = new Comment(
                             CommentId.of(rs.getString("id")),
                             PostId.of(rs.getString("postId")),
@@ -87,11 +87,10 @@ public class JdbcCommentDao implements CommentDao {
 
     private void updateComment(Comment comment) {
         String query = """
-                UPDATE FROM comments SET content=? WHERE postId=? AND id=?
+                UPDATE comments SET content=? WHERE id=?
                 """;
         jdbcTemplate.update(query,
                 comment.content(),
-                comment.postId().toString(),
                 comment.commentId().toString());
     }
 

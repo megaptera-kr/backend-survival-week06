@@ -3,6 +3,9 @@ package kr.megaptera.jdbc.assignment.dtos.comment;
 public class CommentUpdateDto {
     private String content;
 
+    public CommentUpdateDto() {
+    }
+
     public CommentUpdateDto(String content) {
         this.content = content;
     }
@@ -10,4 +13,5 @@ public class CommentUpdateDto {
     public String getContent() {
         return content;
     }
+    
 }

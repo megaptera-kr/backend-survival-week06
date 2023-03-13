@@ -80,6 +80,25 @@ public class CommentControllerTest {
     }
 
     @Test
+    @DisplayName("PATCH 댓글 수정")
+    void update() throws Exception {
+        String commentId = "co_ID_001";
+        String postId = "po_ID_001";
+        String body = """
+                {
+                    "content": "test_1"
+                }
+                """;
+
+        mockMvc.perform(patch("/comments/" + commentId + "?postId=" + postId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isNoContent());
+
+        verify(updateCommentService).updateComment(eq(commentId), eq(postId), any(CommentUpdateDto.class));
+    }
+
+    @Test
     @DisplayName("DELETE 댓글 삭제")
     void deleteComment() throws Exception {
         String commentId = "co_ID_001";
