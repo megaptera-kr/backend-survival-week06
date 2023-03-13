@@ -81,7 +81,7 @@ public class JdbcPostDao implements PostDao {
                 """;
         jdbcTemplate.update(query,
                 post.title(),
-                post.content(),
+                post.content().toString(),
                 post.id().toString());
     }
 
