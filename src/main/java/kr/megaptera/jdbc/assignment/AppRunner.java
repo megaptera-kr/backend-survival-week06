@@ -2,8 +2,10 @@ package kr.megaptera.jdbc.assignment;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.support.TransactionTemplate;
 
+@Component
 public class AppRunner implements CommandLineRunner {
     private final JdbcTemplate jdbcTemplate;
     private final TransactionTemplate transactionTemplate;
