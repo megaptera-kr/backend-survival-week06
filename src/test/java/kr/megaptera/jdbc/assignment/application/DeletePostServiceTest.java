@@ -4,6 +4,7 @@ import kr.megaptera.jdbc.assignment.daos.JdbcPostDao;
 import kr.megaptera.jdbc.assignment.models.MultilineText;
 import kr.megaptera.jdbc.assignment.models.Post;
 import kr.megaptera.jdbc.assignment.models.PostId;
+import kr.megaptera.jdbc.assignment.models.PostTitle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ class DeletePostServiceTest {
         PostId postId = new PostId("001POST");
 
         Post post =
-            new Post(postId, "제목", "작성자", new MultilineText("내용"));
+            new Post(postId, new PostTitle("title"), "작성자", new MultilineText("내용"));
 
         given(postDao.find(postId)).willReturn(post);
 

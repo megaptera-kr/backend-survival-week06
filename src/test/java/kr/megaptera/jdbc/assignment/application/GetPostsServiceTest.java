@@ -5,6 +5,7 @@ import kr.megaptera.jdbc.assignment.dtos.PostDto;
 import kr.megaptera.jdbc.assignment.models.MultilineText;
 import kr.megaptera.jdbc.assignment.models.Post;
 import kr.megaptera.jdbc.assignment.models.PostId;
+import kr.megaptera.jdbc.assignment.models.PostTitle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,7 +34,7 @@ class GetPostsServiceTest {
         given(postDao.findAll())
             .willReturn(List.of(new Post(
                 new PostId("0001POST"),
-                "제목",
+                    new PostTitle("title"),
                 "작성자",
                 new MultilineText("내용")
             )));

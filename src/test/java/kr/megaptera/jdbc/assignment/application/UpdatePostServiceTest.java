@@ -5,6 +5,7 @@ import kr.megaptera.jdbc.assignment.dtos.PostUpdateDto;
 import kr.megaptera.jdbc.assignment.models.MultilineText;
 import kr.megaptera.jdbc.assignment.models.Post;
 import kr.megaptera.jdbc.assignment.models.PostId;
+import kr.megaptera.jdbc.assignment.models.PostTitle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -31,16 +32,16 @@ class UpdatePostServiceTest {
         PostId postId = new PostId("001POST");
 
         Post post =
-            new Post(postId, "제목", "작성자", new MultilineText("내용"));
+            new Post(postId, new PostTitle("title"), "작성자", new MultilineText("내용"));
 
         given(postDao.find(postId)).willReturn(post);
 
         PostUpdateDto postUpdateDto =
-            new PostUpdateDto("변경된 제목", "변경된 내용");
+            new PostUpdateDto("change title", "변경된 내용");
 
         updatePostService.updatePost(postId.toString(), postUpdateDto);
 
-        assertThat(post.title()).isEqualTo("변경된 제목");
+        assertThat(post.title()).isEqualTo(new PostTitle("change title"));
         assertThat(post.content()).isEqualTo(new MultilineText("변경된 내용"));
     }
 }

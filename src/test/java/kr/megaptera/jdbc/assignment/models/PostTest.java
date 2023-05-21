@@ -8,12 +8,12 @@ class PostTest {
     @Test
     void creation() {
         Post post = new Post(
-            "제목",
+            new PostTitle("title"),
             "작성자",
             new MultilineText("내용")
         );
 
-        assertThat(post.title()).isEqualTo("제목");
+        assertThat(post.title().toString()).isEqualTo("title");
         assertThat(post.author()).isEqualTo("작성자");
         assertThat(post.content().toString()).isEqualTo("내용");
     }
@@ -22,14 +22,14 @@ class PostTest {
     void update() {
         Post post = new Post(
             new PostId("001POST"),
-            "제목",
+                new PostTitle("title"),
             "작성자",
             new MultilineText("내용")
         );
 
-        post.update("변경된 제목", new MultilineText("변경된 내용"));
+        post.update(new PostTitle("change title"), new MultilineText("변경된 내용"));
 
-        assertThat(post.title()).isEqualTo("변경된 제목");
+        assertThat(post.title().toString()).isEqualTo("change title");
         assertThat(post.author()).isEqualTo("작성자");
         assertThat(post.content().toString()).isEqualTo("변경된 내용");
     }
