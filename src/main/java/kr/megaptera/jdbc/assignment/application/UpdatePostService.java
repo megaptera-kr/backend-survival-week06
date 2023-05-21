@@ -24,7 +24,7 @@ public class UpdatePostService {
 
         Post post = new Post(postDto);
         post.updatePost(postUpdateDto);
-        postDao.save(post);
+        postDao.update(id, post);
         return new PostDto(post);
     }
 }
