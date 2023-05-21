@@ -43,7 +43,7 @@ class UpdatePostServiceTest {
 
         PostDto postDto = updatePostService.updatePost("2", postUpdateDto);
 
-        verify(postDao).save(any(Post.class));
+        verify(postDao).update(any(String.class), any(Post.class));
         assertThat(postDto).isNotNull();
         assertThat(postDto.getTitle()).contains("새로");
         assertThrows(PostNotFound.class, () -> updatePostService.updatePost("3", postUpdateDto));
