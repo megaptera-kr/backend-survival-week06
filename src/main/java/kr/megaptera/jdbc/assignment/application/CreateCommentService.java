@@ -1,6 +1,5 @@
 package kr.megaptera.jdbc.assignment.application;
 
-import kr.megaptera.jdbc.assignment.daos.CommentDao;
 import kr.megaptera.jdbc.assignment.daos.JdbcCommentDao;
 import kr.megaptera.jdbc.assignment.dtos.CommentCreateDto;
 import kr.megaptera.jdbc.assignment.dtos.CommentDto;
@@ -16,7 +15,7 @@ public class CreateCommentService {
         this.commentDao = commentDao;
     }
 
-    public CommentDto createComment(String postId, CommentCreateDto commentCreateDto) {
+    public void createComment(String postId, CommentCreateDto commentCreateDto) {
         Comment comment = new Comment(
                 PostId.of(postId),
                 commentCreateDto.getAuthor(),
@@ -25,6 +24,5 @@ public class CreateCommentService {
 
         commentDao.save(comment);
 
-        return new CommentDto(comment);
     }
 }

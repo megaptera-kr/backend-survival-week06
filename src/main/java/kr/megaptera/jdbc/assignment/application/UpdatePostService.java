@@ -10,20 +10,20 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UpdatePostService {
-    private final JdbcPostDao jdbcPostDao;
+    private final JdbcPostDao postDao;
 
-    public UpdatePostService(JdbcPostDao jdbcPostDao) {
-        this.jdbcPostDao = jdbcPostDao;
+    public UpdatePostService(JdbcPostDao postDao) {
+        this.postDao = postDao;
     }
 
-    public PostDto updatePost(String id, PostUpdateDto postUpdateDto) {
-        Post post = jdbcPostDao.find(PostId.of(id));
+    public void updatePost(String id, PostUpdateDto postUpdateDto) {
+        Post post = postDao.find(PostId.of(id));
 
         post.update(
                 postUpdateDto.getTitle(),
                 MultilineText.of(postUpdateDto.getContent())
         );
 
-        return new PostDto(post);
+        postDao.save(post);
     }
 }

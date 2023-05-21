@@ -10,16 +10,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UpdateCommentService {
-    private final JdbcCommentDao jdbcCommentDao;
+    private final JdbcCommentDao commentDao;
 
     public UpdateCommentService(JdbcCommentDao commentDao) {
-        this.jdbcCommentDao = commentDao;
+        this.commentDao = commentDao;
     }
 
-    public CommentDto updateComment(String id, String postId, CommentUpdateDto commentUpdateDto) {
-        Comment comment = jdbcCommentDao.find(CommentId.of(id), PostId.of(postId));
+    public void updateComment(String id, String postId, CommentUpdateDto commentUpdateDto) {
+        Comment comment = commentDao.find(CommentId.of(id), PostId.of(postId));
+
         comment.update(commentUpdateDto.getContent());
 
-        return new CommentDto(comment);
+        commentDao.save(comment);
     }
 }

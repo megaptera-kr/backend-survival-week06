@@ -11,7 +11,6 @@ public class Comment {
 
 
     public Comment(PostId postId, String author, String content) {
-        this.id = CommentId.generate();
         this.postId = postId;
         this.author = author;
         this.content = content;

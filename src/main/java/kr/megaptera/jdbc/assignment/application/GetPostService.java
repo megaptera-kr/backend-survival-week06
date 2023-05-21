@@ -4,7 +4,6 @@ import kr.megaptera.jdbc.assignment.daos.JdbcPostDao;
 import kr.megaptera.jdbc.assignment.dtos.PostDto;
 import kr.megaptera.jdbc.assignment.models.Post;
 import kr.megaptera.jdbc.assignment.models.PostId;
-import kr.megaptera.jdbc.assignment.daos.PostDao;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -17,7 +17,6 @@ public class Post {
     }
 
     public Post(String title, String author, MultilineText content) {
-        this.id = PostId.generate();
         this.title = title;
         this.author = author;
         this.content = content;

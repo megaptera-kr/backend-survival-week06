@@ -5,7 +5,6 @@ import kr.megaptera.jdbc.assignment.dtos.PostCreateDto;
 import kr.megaptera.jdbc.assignment.dtos.PostDto;
 import kr.megaptera.jdbc.assignment.dtos.PostUpdateDto;
 import kr.megaptera.jdbc.assignment.exceptions.PostNotFound;
-import kr.megaptera.jdbc.assignment.application.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,25 +50,20 @@ public class PostController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PostDto create(@RequestBody PostCreateDto postCreateDto) {
-        PostDto created = createPostService.createPost(postCreateDto);
+    public void create(@RequestBody PostCreateDto postCreateDto) {
+        createPostService.createPost(postCreateDto);
 
-        return created;
     }
 
     @PatchMapping("/{id}")
-    public PostDto update(@PathVariable String id,
+    public void update(@PathVariable String id,
                           @RequestBody PostUpdateDto postUpdateDto) {
-        PostDto updated = updatePostService.updatePost(id, postUpdateDto);
-
-        return updated;
+        updatePostService.updatePost(id, postUpdateDto);
     }
 
     @DeleteMapping("/{id}")
-    public PostDto delete(@PathVariable String id) {
-        PostDto postDto = deletePostService.deletePost(id);
-
-        return postDto;
+    public void delete(@PathVariable String id) {
+        deletePostService.deletePost(id);
     }
 
     @ExceptionHandler(PostNotFound.class)

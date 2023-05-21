@@ -15,12 +15,11 @@ public class DeleteCommentService {
         this.jdbcCommentDao = commentDao;
     }
 
-    public CommentDto deleteComment(String id, String postId) {
+    public void deleteComment(String id, String postId) {
 
         Comment comment = jdbcCommentDao.find(CommentId.of(id), PostId.of(postId));
 
         jdbcCommentDao.delete(comment.id());
 
-        return new CommentDto(comment);
     }
 }

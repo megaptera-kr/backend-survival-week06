@@ -31,12 +31,9 @@ class CreateCommentServiceTest {
     void create() {
         String postId = "001POST";
 
-        CommentCreateDto commentCreateDto = new CommentCreateDto("호진", "내용");
+        CommentCreateDto newComment = new CommentCreateDto("작성자", "댓글 내용");
 
-        CommentDto commentDto = createCommentService.createComment(postId, commentCreateDto);
-
-        assertThat(commentDto.getAuthor()).isEqualTo("호진");
-        assertThat(commentDto.getContent()).isEqualTo("내용");
+        createCommentService.createComment(postId, newComment);
 
         verify(commentDao).save(any(Comment.class));
     }
