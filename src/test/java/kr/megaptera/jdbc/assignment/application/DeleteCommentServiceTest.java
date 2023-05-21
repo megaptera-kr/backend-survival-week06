@@ -1,6 +1,5 @@
 package kr.megaptera.jdbc.assignment.application;
 
-import kr.megaptera.jdbc.assignment.daos.CommentDao;
 import kr.megaptera.jdbc.assignment.daos.JdbcCommentDao;
 import kr.megaptera.jdbc.assignment.models.Comment;
 import kr.megaptera.jdbc.assignment.models.CommentId;
