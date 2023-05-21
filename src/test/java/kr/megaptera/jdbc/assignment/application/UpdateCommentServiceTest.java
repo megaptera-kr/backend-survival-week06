@@ -43,7 +43,7 @@ class UpdateCommentServiceTest {
         CommentUpdateDto commentUpdateDto = new CommentUpdateDto("아차, 수정하겠습니다.\n또 만나요~");
         CommentDto commentDto = updateCommentService.updateComment("3", "1", commentUpdateDto);
 
-        verify(commentDao).save(any(String.class), any(Comment.class));
+        verify(commentDao).update(any(String.class), any(String.class), any(Comment.class));
         assertThat(commentDto.getContent()).contains("수정하겠습니다");
         assertThrows(CommentNotFound.class, () -> updateCommentService.updateComment("4", "1", commentUpdateDto));
         assertThrows(CommentNotFound.class, () -> updateCommentService.updateComment("3", "10", commentUpdateDto));
