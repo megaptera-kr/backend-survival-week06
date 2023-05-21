@@ -1,11 +1,11 @@
-package kr.megaptera.assignment.application;
+package kr.megaptera.jdbc.assignment.applications;
 
-import kr.megaptera.assignment.dtos.CommentDto;
-import kr.megaptera.assignment.dtos.CommentUpdatedDto;
-import kr.megaptera.assignment.models.Comment;
-import kr.megaptera.assignment.models.CommentId;
-import kr.megaptera.assignment.models.PostId;
-import kr.megaptera.assignment.repositories.CommentRepository;
+import kr.megaptera.jdbc.assignment.dtos.CommentDto;
+import kr.megaptera.jdbc.assignment.dtos.CommentUpdatedDto;
+import kr.megaptera.jdbc.assignment.models.Comment;
+import kr.megaptera.jdbc.assignment.models.CommentId;
+import kr.megaptera.jdbc.assignment.models.PostId;
+import kr.megaptera.jdbc.assignment.repositories.CommentRepository;
 import org.springframework.stereotype.Service;
 
 @Service

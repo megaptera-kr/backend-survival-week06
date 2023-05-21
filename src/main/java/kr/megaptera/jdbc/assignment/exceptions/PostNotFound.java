@@ -1,4 +1,4 @@
-package kr.megaptera.assignment.exceptions;
+package kr.megaptera.jdbc.assignment.exceptions;
 
 public class PostNotFound extends RuntimeException {
 }

@@ -1,6 +1,6 @@
-package kr.megaptera.assignment.dtos;
+package kr.megaptera.jdbc.assignment.dtos;
 
-import kr.megaptera.assignment.models.Comment;
+import kr.megaptera.jdbc.assignment.models.Comment;
 
 public class CommentDto {
     private String id;

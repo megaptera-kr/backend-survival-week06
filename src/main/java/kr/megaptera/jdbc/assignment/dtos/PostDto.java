@@ -1,6 +1,6 @@
-package kr.megaptera.assignment.dtos;
+package kr.megaptera.jdbc.assignment.dtos;
 
-import kr.megaptera.assignment.models.Post;
+import kr.megaptera.jdbc.assignment.models.Post;
 
 public class PostDto {
     private String id;

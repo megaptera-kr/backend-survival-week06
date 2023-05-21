@@ -1,10 +1,12 @@
-package kr.megaptera.assignment.controllers;
+package kr.megaptera.jdbc.assignment.controllers;
 
-import kr.megaptera.assignment.application.*;
-import kr.megaptera.assignment.dtos.PostCreateDto;
-import kr.megaptera.assignment.dtos.PostDto;
-import kr.megaptera.assignment.dtos.PostUpdateDto;
-import kr.megaptera.assignment.exceptions.PostNotFound;
+
+
+import kr.megaptera.jdbc.assignment.applications.*;
+import kr.megaptera.jdbc.assignment.dtos.PostCreateDto;
+import kr.megaptera.jdbc.assignment.dtos.PostDto;
+import kr.megaptera.jdbc.assignment.dtos.PostUpdateDto;
+import kr.megaptera.jdbc.assignment.exceptions.PostNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package kr.megaptera.assignment.dtos;
+package kr.megaptera.jdbc.assignment.dtos;
 
 public class PostCreateDto {
     private String title;

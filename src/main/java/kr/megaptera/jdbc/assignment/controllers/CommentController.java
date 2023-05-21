@@ -1,13 +1,13 @@
-package kr.megaptera.assignment.controllers;
+package kr.megaptera.jdbc.assignment.controllers;
 
-import kr.megaptera.assignment.application.CreateCommentService;
-import kr.megaptera.assignment.application.DeleteCommentService;
-import kr.megaptera.assignment.application.GetCommentsService;
-import kr.megaptera.assignment.application.UpdateCommentService;
-import kr.megaptera.assignment.dtos.CommentCreateDto;
-import kr.megaptera.assignment.dtos.CommentDto;
-import kr.megaptera.assignment.dtos.CommentUpdatedDto;
-import kr.megaptera.assignment.exceptions.CommentNotFound;
+import kr.megaptera.jdbc.assignment.applications.CreateCommentService;
+import kr.megaptera.jdbc.assignment.applications.DeleteCommentService;
+import kr.megaptera.jdbc.assignment.applications.GetCommentsService;
+import kr.megaptera.jdbc.assignment.applications.UpdateCommentService;
+import kr.megaptera.jdbc.assignment.dtos.CommentCreateDto;
+import kr.megaptera.jdbc.assignment.dtos.CommentDto;
+import kr.megaptera.jdbc.assignment.dtos.CommentUpdatedDto;
+import kr.megaptera.jdbc.assignment.exceptions.CommentNotFound;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
