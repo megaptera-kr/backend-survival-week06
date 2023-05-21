@@ -17,19 +17,19 @@ public class AppRunner implements CommandLineRunner {
     public void run(String... args) {
         // TODO: posts 와 comments 테이블을 생성해 주세요.
         String createPosts =
-                "CREATE TABLE [IF NOT EXISTS] posts (\n" +
-                        "   id VARCHAR(50) NOT NULL,\n" +
-                        "   title VARCHAR(255) NOT NULL,\n" +
-                        "   author VARCHAR(50) NOT NULL,\n" +
-                        "   content VARCHAR(3000) NOT NULL,\n" +
+                "CREATE TABLE IF NOT EXISTS posts (" +
+                        "   id VARCHAR(50) NOT NULL," +
+                        "   title VARCHAR(255) NOT NULL," +
+                        "   author VARCHAR(50) NOT NULL," +
+                        "   content VARCHAR(3000) NOT NULL" +
                         ");";
 
         String createComments =
-                "CREATE TABLE [IF NOT EXISTS] comments (\n" +
-                        "   id VARCHAR(50) NOT NULL,\n" +
-                        "   post_id VARCHAR(50) NOT NULL,\n" +
-                        "   author VARCHAR(50) NOT NULL,\n" +
-                        "   content VARCHAR(3000) NOT NULL,\n" +
+                "CREATE TABLE IF NOT EXISTS comments (" +
+                        "   id VARCHAR(50) NOT NULL," +
+                        "   post_id VARCHAR(50) NOT NULL," +
+                        "   author VARCHAR(50) NOT NULL," +
+                        "   content VARCHAR(3000) NOT NULL" +
                         ");";
 
         jdbcTemplate.update(createPosts);
