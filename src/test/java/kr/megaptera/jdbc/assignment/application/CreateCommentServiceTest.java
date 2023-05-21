@@ -1,6 +1,7 @@
 package kr.megaptera.jdbc.assignment.application;
 
 import kr.megaptera.jdbc.assignment.daos.CommentDao;
+import kr.megaptera.jdbc.assignment.daos.JdbcCommentDao;
 import kr.megaptera.jdbc.assignment.dtos.CommentCreateDto;
 import kr.megaptera.jdbc.assignment.dtos.CommentDto;
 import kr.megaptera.jdbc.assignment.models.Comment;
@@ -15,13 +16,13 @@ import static org.mockito.Mockito.verify;
 
 class CreateCommentServiceTest {
 
-    private CommentDao commentDao;
+    private JdbcCommentDao commentDao;
 
     private CreateCommentService createCommentService;
 
     @BeforeEach
     void setUp() {
-        commentDao = mock(CommentDao.class);
+        commentDao = mock(JdbcCommentDao.class);
 
         createCommentService = new CreateCommentService(commentDao);
     }

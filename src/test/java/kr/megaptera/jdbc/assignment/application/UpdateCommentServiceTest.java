@@ -1,6 +1,7 @@
 package kr.megaptera.jdbc.assignment.application;
 
 import kr.megaptera.jdbc.assignment.daos.CommentDao;
+import kr.megaptera.jdbc.assignment.daos.JdbcCommentDao;
 import kr.megaptera.jdbc.assignment.dtos.CommentUpdateDto;
 import kr.megaptera.jdbc.assignment.models.Comment;
 import kr.megaptera.jdbc.assignment.models.CommentId;
@@ -14,13 +15,13 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 class UpdateCommentServiceTest {
-    CommentDao commentDao;
+    JdbcCommentDao commentDao;
 
     UpdateCommentService updateCommentService;
 
     @BeforeEach
     void setUp() {
-        commentDao = mock(CommentDao.class);
+        commentDao = mock(JdbcCommentDao.class);
 
         updateCommentService = new UpdateCommentService(commentDao);
     }

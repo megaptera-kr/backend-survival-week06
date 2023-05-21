@@ -1,5 +1,6 @@
 package kr.megaptera.jdbc.assignment.application;
 
+import kr.megaptera.jdbc.assignment.daos.JdbcPostDao;
 import kr.megaptera.jdbc.assignment.daos.PostDao;
 import kr.megaptera.jdbc.assignment.dtos.PostDto;
 import kr.megaptera.jdbc.assignment.models.Post;
@@ -9,14 +10,14 @@ import java.util.List;
 
 @Service
 public class GetPostsService {
-    private final PostDao postDao;
+    private final JdbcPostDao jdbcPostDao;
 
-    public GetPostsService(PostDao postDao) {
-        this.postDao = postDao;
+    public GetPostsService(JdbcPostDao postDao) {
+        this.jdbcPostDao = postDao;
     }
 
     public List<PostDto> getPostDtos() {
-        List<Post> posts = postDao.findAll();
+        List<Post> posts = jdbcPostDao.findAll();
         return posts.stream().map(PostDto::new).toList();
     }
 }

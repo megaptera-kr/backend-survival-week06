@@ -1,6 +1,7 @@
 package kr.megaptera.jdbc.assignment.application;
 
 import kr.megaptera.jdbc.assignment.daos.CommentDao;
+import kr.megaptera.jdbc.assignment.daos.JdbcCommentDao;
 import kr.megaptera.jdbc.assignment.dtos.CommentDto;
 import kr.megaptera.jdbc.assignment.models.Comment;
 import kr.megaptera.jdbc.assignment.models.PostId;
@@ -10,14 +11,14 @@ import java.util.List;
 
 @Service
 public class GetCommentsService {
-    private final CommentDao commentDao;
+    private final JdbcCommentDao jdbcCommentDao;
 
-    public GetCommentsService(CommentDao commentDao) {
-        this.commentDao = commentDao;
+    public GetCommentsService(JdbcCommentDao commentDao) {
+        this.jdbcCommentDao = commentDao;
     }
 
     public List<CommentDto> getCommentDtos(String postId) {
-        List<Comment> comments = commentDao.findAll(PostId.of(postId));
+        List<Comment> comments = jdbcCommentDao.findAll(PostId.of(postId));
         return comments.stream().map(CommentDto::new).toList();
     }
 }

@@ -1,6 +1,7 @@
 package kr.megaptera.jdbc.assignment.application;
 
 import kr.megaptera.jdbc.assignment.daos.CommentDao;
+import kr.megaptera.jdbc.assignment.daos.JdbcCommentDao;
 import kr.megaptera.jdbc.assignment.dtos.CommentCreateDto;
 import kr.megaptera.jdbc.assignment.dtos.CommentDto;
 import kr.megaptera.jdbc.assignment.models.Comment;
@@ -9,9 +10,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CreateCommentService {
-    private final CommentDao commentDao;
+    private final JdbcCommentDao commentDao;
 
-    public CreateCommentService(CommentDao commentDao) {
+    public CreateCommentService(JdbcCommentDao commentDao) {
         this.commentDao = commentDao;
     }
 

@@ -1,5 +1,6 @@
 package kr.megaptera.jdbc.assignment.application;
 
+import kr.megaptera.jdbc.assignment.daos.JdbcPostDao;
 import kr.megaptera.jdbc.assignment.models.MultilineText;
 import kr.megaptera.jdbc.assignment.models.Post;
 import kr.megaptera.jdbc.assignment.models.PostId;
@@ -17,13 +18,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class DeletePostServiceTest {
-    private PostDao postDao;
+    private JdbcPostDao postDao;
 
     private DeletePostService deletePostService;
 
     @BeforeEach
     void setUp() {
-        postDao = mock(PostDao.class);
+        postDao = mock(JdbcPostDao.class);
 
         deletePostService = new DeletePostService(postDao);
     }

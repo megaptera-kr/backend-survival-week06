@@ -1,6 +1,7 @@
 package kr.megaptera.jdbc.assignment.application;
 
 import kr.megaptera.jdbc.assignment.daos.CommentDao;
+import kr.megaptera.jdbc.assignment.daos.JdbcCommentDao;
 import kr.megaptera.jdbc.assignment.models.Comment;
 import kr.megaptera.jdbc.assignment.models.CommentId;
 import kr.megaptera.jdbc.assignment.models.PostId;
@@ -14,13 +15,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class DeleteCommentServiceTest {
-    private CommentDao commentDao;
+    private JdbcCommentDao commentDao;
 
     private DeleteCommentService deleteCommentService;
 
     @BeforeEach
     void setUp() {
-        commentDao = mock(CommentDao.class);
+        commentDao = mock(JdbcCommentDao.class);
 
         deleteCommentService = new DeleteCommentService(commentDao);
     }

@@ -1,5 +1,6 @@
 package kr.megaptera.jdbc.assignment.application;
 
+import kr.megaptera.jdbc.assignment.daos.JdbcPostDao;
 import kr.megaptera.jdbc.assignment.daos.PostDao;
 import kr.megaptera.jdbc.assignment.dtos.PostCreateDto;
 import kr.megaptera.jdbc.assignment.dtos.PostDto;
@@ -14,13 +15,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class CreatePostServiceTest {
-    private PostDao postDao;
+    private JdbcPostDao postDao;
 
     private CreatePostService createPostService;
 
     @BeforeEach
     void setUp() {
-        postDao = mock(PostDao.class);
+        postDao = mock(JdbcPostDao.class);
 
         createPostService = new CreatePostService(postDao);
     }

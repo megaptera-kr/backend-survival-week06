@@ -1,6 +1,7 @@
 package kr.megaptera.jdbc.assignment.application;
 
 import kr.megaptera.jdbc.assignment.daos.CommentDao;
+import kr.megaptera.jdbc.assignment.daos.JdbcCommentDao;
 import kr.megaptera.jdbc.assignment.dtos.CommentDto;
 import kr.megaptera.jdbc.assignment.models.Comment;
 import kr.megaptera.jdbc.assignment.models.CommentId;
@@ -16,15 +17,15 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 class GetCommentsServiceTest {
-    private CommentDao commentDao;
+    private JdbcCommentDao jdbcCommentDao;
 
     private GetCommentsService getCommentsService;
 
     @BeforeEach
     void setUp() {
-        commentDao = mock(CommentDao.class);
+        jdbcCommentDao = mock(JdbcCommentDao.class);
 
-        getCommentsService = new GetCommentsService(commentDao);
+        getCommentsService = new GetCommentsService(jdbcCommentDao);
     }
 
     @Test
@@ -32,7 +33,7 @@ class GetCommentsServiceTest {
     void list() {
         PostId postId = new PostId("001POST");
 
-        given(commentDao.findAll(postId)).willReturn(List.of(
+        given(jdbcCommentDao.findAll(postId)).willReturn(List.of(
                 new Comment(
                         new CommentId("001COMMENT"),
                         postId,

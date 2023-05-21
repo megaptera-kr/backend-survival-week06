@@ -1,5 +1,6 @@
 package kr.megaptera.jdbc.assignment.application;
 
+import kr.megaptera.jdbc.assignment.daos.JdbcPostDao;
 import kr.megaptera.jdbc.assignment.daos.PostDao;
 import kr.megaptera.jdbc.assignment.dtos.PostCreateDto;
 import kr.megaptera.jdbc.assignment.dtos.PostDto;
@@ -9,10 +10,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CreatePostService {
-    private final PostDao postDao;
+    private final JdbcPostDao jdbcPostDao;
 
-    public CreatePostService(PostDao postDao) {
-        this.postDao = postDao;
+    public CreatePostService(JdbcPostDao postDao) {
+        this.jdbcPostDao = postDao;
     }
 
     public PostDto createPost(PostCreateDto postCreateDto) {
@@ -22,7 +23,7 @@ public class CreatePostService {
                 MultilineText.of(postCreateDto.getContent())
         );
 
-        postDao.save(post);
+        jdbcPostDao.save(post);
 
         return new PostDto(post);
     }
