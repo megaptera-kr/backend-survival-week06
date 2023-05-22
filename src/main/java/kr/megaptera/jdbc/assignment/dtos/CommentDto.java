@@ -27,6 +27,10 @@ public class CommentDto {
                 '}';
     }
 
+    public String getId() {
+        return id;
+    }
+
     public String getAuthor() {
         return author;
     }
