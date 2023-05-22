@@ -18,11 +18,12 @@ public class UpdatePostService {
 
     public PostDto updatePost(String id, PostUpdateDto postUpdateDto) {
         Post post = postRepository.find(PostId.of(id));
-
         post.update(
-            postUpdateDto.getTitle(),
-            MultilineText.of(postUpdateDto.getContent())
+                postUpdateDto.getTitle(),
+                MultilineText.of(postUpdateDto.getContent())
         );
+        postRepository.update(post);
+
 
         return new PostDto(post);
     }

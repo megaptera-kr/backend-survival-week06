@@ -79,8 +79,10 @@ public class CommentRepository {
     }
 
     public void update(String id, String content) {
-        String query = "update comment " +
+        String query = "update comments " +
                 "set content = ? where id = ?";
         jdbcTemplate.update(query,content, id);
     }
+
+
 }

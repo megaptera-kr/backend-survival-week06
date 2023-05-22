@@ -71,9 +71,13 @@ public class PostRepository {
     }
 
     public void delete(PostId id) {
-        String query = "delete from posts where id = '?'";
+        String query = "delete from posts where id = ?";
         jdbcTemplate.update(query, id.toString());
     }
 
 
+    public void update(Post post) {
+        String query = "update posts set title=?, author=?, content=? where id=?";
+        jdbcTemplate.update(query,  post.title(), post.author(), post.content().toString(), post.id().toString());
+    }
 }
