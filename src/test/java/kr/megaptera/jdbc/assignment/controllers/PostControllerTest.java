@@ -116,7 +116,7 @@ public class PostControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json)
                 )
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
 
         verify(updatePostService).updatePost(eq(id), any(PostDto.class));
     }
@@ -127,7 +127,7 @@ public class PostControllerTest {
         String id = "100";
 
         mockMvc.perform(delete("/posts/{id}", id))
-                .andExpect(status().isOk());
+                .andExpect(status().isNoContent());
 
         verify(deletePostService).deletePost(id);
     }
