@@ -23,6 +23,14 @@ public class Post {
         this.content = content;
     }
 
+    public Post(String id, String title, String author, String content){
+        this.id = PostId.of(id);
+        this.title = title;
+        this.author = author;
+        this.content = new MultilineText(content);
+    }
+
+
     public PostId id() {
         return id;
     }

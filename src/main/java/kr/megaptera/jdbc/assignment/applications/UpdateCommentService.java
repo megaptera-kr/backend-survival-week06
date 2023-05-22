@@ -21,7 +21,7 @@ public class UpdateCommentService {
         Comment comment = commentRepository
             .find(CommentId.of(id), PostId.of(postId));
 
-        comment.update(commentUpdatedDto.getContent());
+        commentRepository.update(id, commentUpdatedDto.getContent());
 
         return new CommentDto(comment);
     }

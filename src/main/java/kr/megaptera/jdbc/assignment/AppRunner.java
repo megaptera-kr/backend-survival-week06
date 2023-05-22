@@ -31,6 +31,7 @@ public class AppRunner implements CommandLineRunner {
                         DROP TABLE IF EXISTS comments;
                         CREATE TABLE comments(
                           id VARCHAR(100),
+                          post_id VARCHAR(100),
                             author VARCHAR(30),
                             content VARCHAR(1000) 
                         );

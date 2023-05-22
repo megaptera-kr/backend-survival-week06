@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,49 +18,51 @@ import java.util.Map;
 @Repository
 public class PostRepository {
     private final JdbcTemplate jdbcTemplate;
-    private final TransactionTemplate transactionTemplate;
 
-    public PostRepository(JdbcTemplate jdbcTemplate, TransactionTemplate transactionTemplate) {
+    public PostRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-        this.transactionTemplate = transactionTemplate;
     }
 
     public List<Post> findAll() {
         List<Post> posts = new ArrayList<>();
-        String query = "select * from posts";
+
+        String query = "SELECT * FROM posts";
+
         jdbcTemplate.query(query, resultSet -> {
             while(resultSet.next()) {
-                System.out.println(123);
                 Post post = new Post(
-                        new PostId(resultSet.getString("id")),
+                       resultSet.getString("id"),
                         resultSet.getString("title"),
                         resultSet.getString("author"),
-                        new MultilineText(resultSet.getString("content"))
+                        resultSet.getString("content")
                 );
                 posts.add(post);
             }
+
+            return null;
         });
+
         return posts;
     }
 
     public Post find(PostId id) {
         String query = "select * from posts where id = ?";
-        jdbcTemplate.query(query, resultSet -> {
-            if(resultSet.next()) {
+        Post post = jdbcTemplate.query(query, resultSet -> {
+            if (resultSet.next()) {
 
-                Post post = new Post(
-                        new PostId(resultSet.getString("id")),
+                Post selectPost = new Post(
+                       resultSet.getString("id"),
                         resultSet.getString("title"),
                         resultSet.getString("author"),
-                        new MultilineText(resultSet.getString("content"))
+                        resultSet.getString("content")
                 );
 
-                return post;
-            }else{
+                return selectPost;
+            } else {
                 throw new PostNotFound();
             }
-        });
-        throw new PostNotFound();
+        }, id.toString());
+        return post;
     }
 
     public void save(Post post) {
@@ -70,4 +74,6 @@ public class PostRepository {
         String query = "delete from posts where id = '?'";
         jdbcTemplate.update(query, id.toString());
     }
+
+
 }
