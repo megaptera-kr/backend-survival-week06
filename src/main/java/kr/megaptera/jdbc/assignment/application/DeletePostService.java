@@ -1,5 +1,6 @@
 package kr.megaptera.jdbc.assignment.application;
 
+import kr.megaptera.jdbc.assignment.daos.*;
 import kr.megaptera.jdbc.assignment.dtos.*;
 import kr.megaptera.jdbc.assignment.exceptions.*;
 import kr.megaptera.jdbc.assignment.models.*;
@@ -8,17 +9,14 @@ import org.springframework.stereotype.*;
 
 @Service
 public class DeletePostService {
-    private final PostRepository postRepository;
+    private final JdbcPostDao postDao;
 
-    public DeletePostService(PostRepository postRepository) {
-        this.postRepository = postRepository;
+
+    public DeletePostService(JdbcPostDao postDao) {
+        this.postDao = postDao;
     }
 
-    public PostDto deletePost(String id) throws PostNotFound {
-        Post post = postRepository.find(PostId.of(id));
-
-        postRepository.delete(PostId.of(id));
-
-        return new PostDto(post);
+    public void deletePost(String id) {
+        postDao.delete(PostId.of(id));
     }
 }

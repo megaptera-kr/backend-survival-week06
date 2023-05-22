@@ -11,9 +11,11 @@ import org.springframework.stereotype.*;
 @Service
 public class GetPostService {
 
-    @Autowired
-    private JdbcPostDao postDao;
+    private final JdbcPostDao postDao;
 
+    public GetPostService(JdbcPostDao postDao) {
+        this.postDao = postDao;
+    }
 
     public PostDto getPostDto(String id) {
         Post post = postDao.find(PostId.of(id));

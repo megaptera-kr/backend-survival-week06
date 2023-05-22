@@ -10,9 +10,11 @@ import org.springframework.stereotype.*;
 
 @Service
 public class UpdatePostService {
-    @Autowired
-    private JdbcPostDao postDao;
+    private final JdbcPostDao postDao;
 
+    public UpdatePostService(JdbcPostDao postDao) {
+        this.postDao = postDao;
+    }
 
     public void updatePost(String id, PostDto postUpdateDto) {
         Post post = postDao.find(PostId.of(id));

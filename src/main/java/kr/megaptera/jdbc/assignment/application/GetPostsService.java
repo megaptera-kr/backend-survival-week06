@@ -11,9 +11,11 @@ import java.util.*;
 
 @Service
 public class GetPostsService {
-    @Autowired
-    private JdbcPostDao postDao;
+    private final JdbcPostDao postDao;
 
+    public GetPostsService(JdbcPostDao postDao) {
+        this.postDao = postDao;
+    }
 
     public List<PostDto> getPostDtos() {
         List<Post> posts = postDao.findAll();

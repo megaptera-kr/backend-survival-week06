@@ -11,8 +11,11 @@ import java.util.*;
 
 @Service
 public class GetCommentsService {
-    @Autowired
-    private JdbcCommentDao commentDao;
+    private final JdbcCommentDao commentDao;
+
+    public GetCommentsService(JdbcCommentDao commentDao) {
+        this.commentDao = commentDao;
+    }
 
     public List<CommentDto> getCommentDtos(String postId) {
         List<Comment> comments = commentDao.findAll(PostId.of(postId));

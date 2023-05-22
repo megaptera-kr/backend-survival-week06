@@ -11,12 +11,11 @@ import org.springframework.stereotype.*;
 @Service
 public class UpdateCommentService {
 
-    @Autowired
-    private CommentRepository commentRepository;
+    private final JdbcCommentDao commentDao;
 
-    @Autowired
-    private JdbcCommentDao commentDao;
-
+    public UpdateCommentService(JdbcCommentDao commentDao) {
+        this.commentDao = commentDao;
+    }
 
     public void updateComment(String id, String postId,
                               CommentDto commentUpdatedDto) {
