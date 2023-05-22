@@ -50,25 +50,22 @@ public class PostController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PostDto create(@RequestBody PostCreateDto postCreateDto) {
+    public void create(@RequestBody PostCreateDto postCreateDto) {
         PostDto created = createPostService.createPost(postCreateDto);
 
-        return created;
     }
 
     @PatchMapping("/{id}")
-    public PostDto update(@PathVariable String id,
+    public void update(@PathVariable String id,
                           @RequestBody PostUpdateDto postUpdateDto) {
         PostDto updated = updatePostService.updatePost(id, postUpdateDto);
 
-        return updated;
     }
 
     @DeleteMapping("/{id}")
-    public PostDto delete(@PathVariable String id) {
+    public void delete(@PathVariable String id) {
         PostDto postDto = deletePostService.deletePost(id);
 
-        return postDto;
     }
 
     @ExceptionHandler(PostNotFound.class)

@@ -42,16 +42,15 @@ public class CommentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CommentDto create(@RequestParam String postId,
+    public void create(@RequestParam String postId,
                              @RequestBody CommentCreateDto commentCreateDto) {
         CommentDto created = createCommentService
             .createComment(postId, commentCreateDto);
 
-        return created;
     }
 
     @PatchMapping("/{id}")
-    public CommentDto update(
+    public void update(
         @PathVariable String id,
         @RequestParam String postId,
         @RequestBody CommentUpdatedDto commentUpdatedDto
@@ -59,17 +58,15 @@ public class CommentController {
         CommentDto updated = updateCommentService
             .updateComment(id, postId, commentUpdatedDto);
 
-        return updated;
     }
 
     @DeleteMapping("/{id}")
-    public CommentDto delete(
+    public void delete(
         @PathVariable String id,
         @RequestParam String postId
     ) {
         CommentDto deleted = deleteCommentService.deleteComment(id, postId);
 
-        return deleted;
     }
 
     @ExceptionHandler(CommentNotFound.class)
