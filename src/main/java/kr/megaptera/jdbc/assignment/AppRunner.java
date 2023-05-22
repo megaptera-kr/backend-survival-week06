@@ -3,8 +3,10 @@ package kr.megaptera.jdbc.assignment;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.jdbc.core.*;
+import org.springframework.stereotype.*;
 import org.springframework.transaction.support.*;
 
+@Component
 public class AppRunner implements CommandLineRunner {
     @Autowired
     private JdbcTemplate jdbcTemplate;
