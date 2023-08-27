@@ -39,7 +39,7 @@ public class PostController {
                           CreatePostService createPostService,
                           UpdatePostService updatePostService,
                           DeletePostService deletePostService
-                          ) {
+    ) {
         this.getPostService = getPostService;
         this.getPostsService = getPostsService;
         this.createPostService = createPostService;
@@ -48,14 +48,14 @@ public class PostController {
     }
 
     @GetMapping
-    public List<PostDto> list(){
+    public List<PostDto> list() {
         List<PostDto> postDtos = getPostsService.getPostDtos();
 
         return postDtos;
     }
 
     @GetMapping("/{id}")
-    public PostDto detail(@PathVariable String id){
+    public PostDto detail(@PathVariable String id) {
         PostDto postDto = getPostService.getPostDto(id);
 
         return postDto;
@@ -72,13 +72,13 @@ public class PostController {
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@PathVariable String id,
-                       @RequestBody PostUpdateDto postUpdateDto){
+                       @RequestBody PostUpdateDto postUpdateDto) {
         updatePostService.updatePost(id, postUpdateDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable String id){
+    public void delete(@PathVariable String id) {
         deletePostService.deletePost(id);
     }
 
@@ -86,9 +86,8 @@ public class PostController {
     @ExceptionHandler(PostNotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String postNotFound() {
-        return "게시물을 찾을 수 없습니다.!";
+        return "게시물을 찾을 수 없습니다.";
     }
-
 
 
 }

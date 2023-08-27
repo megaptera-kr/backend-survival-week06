@@ -79,6 +79,6 @@ public class CommentController {
     @ExceptionHandler(CommnetNotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String commentNotFound() {
-        return "댓글을 찾을 수 없습니다.!!";
+        return "댓글을 찾을 수 없습니다.";
     }
 }
