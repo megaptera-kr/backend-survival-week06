@@ -1,14 +1,20 @@
 package kr.megaptera.jdbc.assignment;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+@Component
+@RequiredArgsConstructor
 public class AppRunner implements CommandLineRunner {
     private final JdbcTemplate jdbcTemplate;
 
+    /*
     public AppRunner(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+    */
 
     @Override
     public void run(String... args) {

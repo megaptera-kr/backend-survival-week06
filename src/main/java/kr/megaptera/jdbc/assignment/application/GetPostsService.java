@@ -10,12 +10,17 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class GetPostService {
+public class GetPostsService {
 
     private final JdbcPostDao postDao;
 
     public List<PostDto> getPostsDto() {
-        List<Post> =
-        return null;
+        List<Post> posts = postDao.findAll();
+
+        List<PostDto> postDtos = posts.stream()
+                .map(post -> new PostDto(post))
+                .toList();
+
+        return postDtos;
     }
 }

@@ -1,2 +1,4 @@
-package kr.megaptera.jdbc.assignment.exceptions;public class CommentNotFound {
+package kr.megaptera.jdbc.assignment.exceptions;
+
+public class CommentNotFound extends RuntimeException {
 }

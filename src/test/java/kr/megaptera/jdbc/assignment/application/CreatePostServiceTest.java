@@ -11,7 +11,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class CreatePosServiceTest {
+public class CreatePostServiceTest {
     private JdbcPostDao postDao;
     private CreatePostService createPostService;
 
