@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class JdbcPostDao implements PostDao {
@@ -38,5 +40,25 @@ public class JdbcPostDao implements PostDao {
 
         // db에서 생성된 id를 postId에 저장
         post.setId(new PostId(keyHolder.getKeys().get("id").toString()));
+    }
+
+    public List<Post> findAll() {
+        List<Post> listPost = new ArrayList<>();
+
+        String sql = """
+                SELECT *
+                FROM %s;
+                """.formatted(POST_TABLE_NAME);
+
+        jdbcTemplate.query(sql, rs -> {
+            listPost.add(new Post(
+                    new PostId(rs.getString("id")),
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    rs.getString("content")
+            ));
+        });
+
+        return listPost;
     }
 }
