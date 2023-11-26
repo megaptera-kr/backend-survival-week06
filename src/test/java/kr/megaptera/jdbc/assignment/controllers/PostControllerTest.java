@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -74,6 +75,7 @@ class PostControllerTest {
 
     @Test
     @DisplayName("POST /posts")
+    @Transactional
     void create() {
 
         PostDto postDto = new PostDto("id", "title", "author", "createTestContent");
@@ -91,7 +93,8 @@ class PostControllerTest {
 
         PostDto postDto = new PostDto("updatedTitle", "updatedContent");
         restTemplate.getRestTemplate().setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-        PostDto updatedPost = restTemplate.patchForObject(POST_CONTROLLER_URL + "/" + SAMPLE_POST_ID, postDto, PostDto.class);
+        Post existPost = postDao.findAll().get(0);
+        PostDto updatedPost = restTemplate.patchForObject(POST_CONTROLLER_URL + "/" + existPost.id().toString(), postDto, PostDto.class);
 
         assertThat(updatedPost.getTitle()).isEqualTo(postDto.getTitle());
         assertThat(updatedPost.getContent()).isEqualTo(postDto.getContent());
@@ -100,7 +103,7 @@ class PostControllerTest {
     @Test
     @DisplayName("DELETE /posts/{id}")
     void deletePost() {
-        PostDto postDto = new PostDto(SAMPLE_POST);
+        PostDto postDto = new PostDto(postDao.findAll().get(0));
 
         restTemplate.delete(POST_CONTROLLER_URL + "/" + postDto.getId());
 

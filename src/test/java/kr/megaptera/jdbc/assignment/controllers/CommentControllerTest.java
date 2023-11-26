@@ -8,7 +8,6 @@ import kr.megaptera.jdbc.assignment.models.CommentAuthor;
 import kr.megaptera.jdbc.assignment.models.MultilineText;
 import kr.megaptera.jdbc.assignment.models.Post;
 import kr.megaptera.jdbc.assignment.models.PostAuthor;
-import kr.megaptera.jdbc.assignment.models.PostId;
 import kr.megaptera.jdbc.assignment.models.PostTitle;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -25,8 +24,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class CommentControllerTest {
-    private final int SAMPLE_POST_ID = 1;
-    private final int SAMPLE_COMMENT_ID = 1;
     @Autowired
     private TestRestTemplate restTemplate;
     @Autowired
@@ -36,28 +33,39 @@ class CommentControllerTest {
 
     private final String COMMENTS_CONTROLLER_URL;
 
+    private Post SAMPLE_POST;
+    private String SAMPLE_POST_ID;
+    private Comment SAMPLE_COMMENT;
+    private String SAMPLE_COMMENT_ID;
+
     public CommentControllerTest(@Value("${local.server.port}") int port) {
         COMMENTS_CONTROLLER_URL = "http://localhost:" + port + "/comments";
     }
 
-    private final Post SAMPLE_POST = new Post(
-            PostTitle.of("제목"),
-            PostAuthor.of("작성자"),
-            MultilineText.of("내용")
-    );
-    private final Comment SAMPLE_COMMENT = new Comment(
-            PostId.of(SAMPLE_POST_ID),
-            CommentAuthor.of("commentAuthor"),
-            MultilineText.of("commentContent")
-    );
-
 
     @BeforeEach
     void setup() {
-        postDao.clear();
-        postDao.save(SAMPLE_POST);
         commentDao.clear();
-        commentDao.save(SAMPLE_COMMENT);
+        postDao.clear();
+
+        postDao.save(new Post(
+                PostTitle.of("제목"),
+                PostAuthor.of("작성자"),
+                MultilineText.of("내용")
+        ));
+
+        SAMPLE_POST = postDao.findAll().get(0);
+
+        SAMPLE_POST_ID = SAMPLE_POST.id().toString();
+
+        commentDao.save(new Comment(
+                SAMPLE_POST.id(),
+                CommentAuthor.of("commentAuthor"),
+                MultilineText.of("commentContent")
+        ));
+        SAMPLE_COMMENT = commentDao.findAll(SAMPLE_POST.id().toString()).get(0);
+
+        SAMPLE_COMMENT_ID = SAMPLE_COMMENT.id().toString();
     }
 
     @Test

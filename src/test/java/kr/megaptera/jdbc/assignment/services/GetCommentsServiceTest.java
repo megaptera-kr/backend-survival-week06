@@ -34,25 +34,27 @@ class GetCommentsServiceTest {
     @DisplayName("댓글 목록 조회")
     void list() {
         PostId postId = PostId.of("1");
-        given(commentDao.findAll(postId.toString()))
-                .willReturn(List.of(
-                        new Comment(
-                                CommentId.of("COMMENT_1"),
-                                postId,
-                                CommentAuthor.of("AUTHOR_1"),
-                                MultilineText.of("CONTENT_1")
-                        ),
-                        new Comment(
-                                CommentId.of("COMMENT_2"),
-                                postId,
-                                CommentAuthor.of("AUTHOR_2"),
-                                MultilineText.of("CONTENT_2")
-                        )
-                ));
+
+        List<Comment> comments = List.of(
+                new Comment(
+                        CommentId.of("COMMENT_1"),
+                        postId,
+                        CommentAuthor.of("AUTHOR_1"),
+                        MultilineText.of("CONTENT_1")
+                ),
+                new Comment(
+                        CommentId.of("COMMENT_2"),
+                        postId,
+                        CommentAuthor.of("AUTHOR_2"),
+                        MultilineText.of("CONTENT_2")
+                )
+        );
+
+        given(commentDao.findAll(postId.toString())).willReturn(comments);
 
         List<CommentDto> commentDtos = getCommentsService.getCommentDtos(postId.toString());
 
-        verify(commentDao.findAll(postId.toString()));
+        verify(commentDao).findAll(postId.toString());
         assertThat(commentDtos).hasSize(2);
         assertThat(commentDtos.get(0).getContent()).isEqualTo("CONTENT_1");
         assertThat(commentDtos.get(1).getContent()).isEqualTo("CONTENT_2");
