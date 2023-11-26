@@ -64,6 +64,12 @@ public class JdbcCommentDao implements CommentDao {
     }
 
     @Override
+    public void clear() {
+        String query = "DELETE FROM comment";
+        jdbcTemplate.update(query);
+    }
+
+    @Override
     public void update(Comment comment) {
         transactionTemplate.execute(status -> {
             String updateQuery = "UPDATE comment SET content = ? WHERE id = ?";

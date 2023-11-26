@@ -20,6 +20,12 @@ public class PostDto {
         this.content = content;
     }
 
+    public PostDto(String title, String author, String content) {
+        this.title = title;
+        this.author = author;
+        this.content = content;
+    }
+
     public PostDto(Post post) {
         if (post.id() != null) {
             this.id = post.id().toString();
