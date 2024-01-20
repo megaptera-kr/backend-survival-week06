@@ -4,6 +4,7 @@ import kr.megaptera.jdbc.assignment.dtos.PostCreateDto;
 import kr.megaptera.jdbc.assignment.dtos.PostDetailDto;
 import kr.megaptera.jdbc.assignment.dtos.PostUpdateDto;
 import kr.megaptera.jdbc.assignment.services.PostService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,17 +29,20 @@ public class PostController {
     }
 
     @PostMapping
-    public PostDetailDto create(@RequestBody PostCreateDto dto) {
-        return postService.create(dto);
+    @ResponseStatus(HttpStatus.CREATED)
+    public void create(@RequestBody PostCreateDto dto) {
+        postService.create(dto);
     }
 
     @PatchMapping("/{id}")
-    public PostDetailDto update(@PathVariable String id, @RequestBody PostUpdateDto dto) {
-        return postService.update(id, dto);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@PathVariable String id, @RequestBody PostUpdateDto dto) {
+        postService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public PostDetailDto delete(@PathVariable String id) {
-        return postService.delete(id);
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable String id) {
+        postService.delete(id);
     }
 }
