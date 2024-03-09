@@ -6,7 +6,9 @@ import kr.megaptera.jdbc.assignment.repository.CommentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -35,6 +37,11 @@ class CreateCommentServiceTest {
         createCommentService.createComment(postId, createCommentDTO);
 
         // then
-        verify(commentRepository).createComment(any(Comment.class));
+        ArgumentCaptor<Comment> commentCaptor = ArgumentCaptor.forClass(Comment.class);
+        verify(commentRepository).createComment(commentCaptor.capture());
+        Comment capturedComment = commentCaptor.getValue();
+
+        assertEquals(author, capturedComment.author());
+        assertEquals(content, capturedComment.content());
     }
 }

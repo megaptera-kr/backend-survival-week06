@@ -16,7 +16,7 @@ public class CreateCommentService {
     }
 
     public void createComment(String postId, CreateCommentDTO createCommentDTO) {
-        Comment comment = new Comment(PostId.of(postId), createCommentDTO.author(), createCommentDTO.author());
+        Comment comment = new Comment(PostId.of(postId), createCommentDTO.author(), createCommentDTO.content());
         commentRepository.createComment(comment);
     }
 }
