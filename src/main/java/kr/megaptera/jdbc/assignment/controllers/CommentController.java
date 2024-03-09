@@ -46,13 +46,13 @@ public class CommentController {
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public void createComment(@RequestParam(name = "postId") String postId, @RequestBody CreateCommentDTO createCommentDTO) {
-        createCommentService.createComment(postId, createCommentDTO.author(), createCommentDTO.content());
+        createCommentService.createComment(postId, createCommentDTO);
     }
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateComment(@PathVariable(name = "id") String id, @RequestParam(name = "postId") String postId, @RequestBody UpdateCommentDTO content) {
-        updateCommentService.updateComment(id, postId, content.content());
+        updateCommentService.updateComment(id, postId, content);
     }
 
     @DeleteMapping("/{id}")

@@ -86,8 +86,8 @@ public class JdbcPostDAO implements PostDAO {
     private RowMapper<Post> postRowMapper() {
         return (rs, rowNum) -> new Post(
                 new PostId(rs.getLong("id")),
-                rs.getString("author"),
                 rs.getString("title"),
+                rs.getString("author"),
                 rs.getString("content")
         );
     }

@@ -1,5 +1,6 @@
 package kr.megaptera.jdbc.assignment.application.comment;
 
+import kr.megaptera.jdbc.assignment.dtos.comment.UpdateCommentDTO;
 import kr.megaptera.jdbc.assignment.repository.CommentRepository;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ public class UpdateCommentService {
         this.commentRepository = commentRepository;
     }
 
-    public void updateComment(String commentId, String postId, String content) {
-        commentRepository.updateComment(commentId, postId, content);
+    public void updateComment(String commentId, String postId, UpdateCommentDTO updateCommentDTO) {
+        commentRepository.updateComment(commentId, postId, updateCommentDTO.content());
     }
 }
